@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario sobre Estrés Laboral y Motivación</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 5px; }
+        .organizer { text-align: center; font-weight: bold; color: #7f8c8d; margin-bottom: 20px; }
+        .info-box { background-color: #e8f4f8; border-left: 5px solid #3498db; padding: 15px; margin-bottom: 30px; border-radius: 4px; }
+        .important { background-color: #fdf2e9; border-left: 5px solid #e67e22; }
+        fieldset { border: 1px solid #ddd; border-radius: 6px; padding: 20px; margin-bottom: 25px; }
+        legend { font-weight: bold; font-size: 1.1em; color: #2c3e50; padding: 0 10px; }
+        .form-group { margin-bottom: 15px; }
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #e0e0e0; padding: 10px; text-align: center; }
+        th:first-child, td:first-child { text-align: left; width: 50%; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .scale-info { font-size: 0.9em; color: #555; margin-bottom: 10px; font-style: italic; }
+        .scale-10 { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; background: #f9f9f9; padding: 10px; border-radius: 4px; }
+        .scale-10 input { width: 80%; }
+        textarea { width: 100%; height: 80px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; box-sizing: border-box; }
+        
+        .admin-section {
+            background-color: #fcfcfc;
+            border: 2px dashed #bdc3c7;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .btn {
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 5px;
+        }
+        .btn-submit { background-color: #2ecc71; color: white; width: 100%; padding: 15px; font-size: 1.1em; }
+        .btn-submit:hover { background-color: #27ae60; }
+        .btn-download { background-color: #34495e; color: white; }
+        .btn-download:hover { background-color: #2c3e50; }
+        .btn-clear { background-color: #e74c3c; color: white; }
+        .btn-clear:hover { background-color: #c0392b; }
+        .counter { font-weight: bold; color: #2980b9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cuestionario sobre Estrés Laboral y Motivación</h1>
+    <div class="organizer">Organiza: Comité de Empresa</div>
+
+    <div class="info-box">
+        <p><strong>Objetivo:</strong> Conocer la percepción de la plantilla sobre las conditions de trabajo, el nivel de estrés y la motivación, con el fin de identificar posibles áreas de mejora y trasladar propuestas a la empresa.</p>
+    </div>
+
+    <div class="info-box important">
+        <p><strong>Importante:</strong> La encuesta es voluntaria y anónima. No incluya datos personales que permitan su identificación.</p>
+    </div>
+
+    <form id="encuestaForm" action="https://default4e4fae0584e046c89afcb764278b83.25.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/7d576b610aeb41d7a54140d0c5a09acf/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bIvxWc0nsHRv7VdjgVwK6ye05NQciDRjLPxzr4jj3sg" method="POST" onsubmit="procesarYEnviarFormulario(event)" target="iframe_oculto">
+    <input type="hidden" name="datos_json" id="datos_json">
+        <fieldset>
+            <legend>Datos generales (opcionales)</legend>
+            <div class="form-group">
+                <label><strong>Área o departamento:</strong></label>
+                <div class="grid-options">
+                    <label><input type="radio" name="departamento" value="Administración"> Administración</label>
+                    <label><input type="radio" name="departamento" value="Producción / Operaciones"> Producción / Operaciones</label>
+                    <label><input type="radio" name="departamento" value="Comercial"> Comercial</label>
+                    <label><input type="radio" name="departamento" value="Logística"> Logística</label>
+                    <label><input type="radio" name="departamento" value="Mantenimiento"> Mantenimiento</label>
+                    <label><input type="radio" name="departamento" value="Otro"> Otro: <input type="text" name="departamento_otro" style="width: 100px;"></label>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <label><strong>Antigüedad en la empresa:</strong></label>
+                <div class="grid-options">
+                    <label><input type="radio" name="antiguedad" value="Menos de 1 año"> Menos de 1 año</label>
+                    <label><input type="radio" name="antiguedad" value="Entre 1 y 3 años"> Entre 1 y 3 años</label>
+                    <label><input type="radio" name="antiguedad" value="Entre 4 y 10 años"> Entre 4 y 10 años</label>
+                    <label><input type="radio" name="antiguedad" value="Más de 10 años"> Más de 10 años</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Carga de trabajo</legend>
+            <p class="scale-info">Escala: 1 = Totalmente en desacuerdo | 2 = En desacuerdo | 3 = Ni de acuerdo ni en desacuerdo | 4 = De acuerdo | 5 = Totalmente de acuerdo</p>
+            <table>
+                <thead>
+                    <tr><th>Pregunta</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>La cantidad de trabajo que tengo es razonable.</td>
+                        <td><input type="radio" name="carga_1" value="1"></td><td><input type="radio" name="carga_1" value="2"></td><td><input type="radio" name="carga_1" value="3"></td><td><input type="radio" name="carga_1" value="4"></td><td><input type="radio" name="carga_1" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Dispongo de tiempo suficiente para realizar mis tareas correctamente.</td>
+                        <td><input type="radio" name="carga_2" value="1"></td><td><input type="radio" name="carga_2" value="2"></td><td><input type="radio" name="carga_2" value="3"></td><td><input type="radio" name="carga_2" value="4"></td><td><input type="radio" name="carga_2" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Debo trabajar con prisas de forma habitual.</td>
+                        <td><input type="radio" name="carga_3" value="1"></td><td><input type="radio" name="carga_3" value="2"></td><td><input type="radio" name="carga_3" value="3"></td><td><input type="radio" name="carga_3" value="4"></td><td><input type="radio" name="carga_3" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Las interrupciones dificultaran mi trabajo diario.</td>
+                        <td><input type="radio" name="carga_4" value="1"></td><td><input type="radio" name="carga_4" value="2"></td><td><input type="radio" name="carga_4" value="3"></td><td><input type="radio" name="carga_4" value="4"></td><td><input type="radio" name="carga_4" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Los objetivos exigidos son realistas.</td>
+                        <td><input type="radio" name="carga_5" value="1"></td><td><input type="radio" name="carga_5" value="2"></td><td><input type="radio" name="carga_5" value="3"></td><td><input type="radio" name="carga_5" value="4"></td><td><input type="radio" name="carga_5" value="5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Organización del trabajo</legend>
+            <table>
+                <thead>
+                    <tr><th>Pregunta</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tengo claras mis funciones y responsabilidades.</td>
+                        <td><input type="radio" name="org_1" value="1"></td><td><input type="radio" name="org_1" value="2"></td><td><input type="radio" name="org_1" value="3"></td><td><input type="radio" name="org_1" value="4"></td><td><input type="radio" name="org_1" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Recibo información suficiente para realizar mi trabajo.</td>
+                        <td><input type="radio" name="org_2" value="1"></td><td><input type="radio" name="org_2" value="2"></td><td><input type="radio" name="org_2" value="3"></td><td><input type="radio" name="org_2" value="4"></td><td><input type="radio" name="org_2" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Los cambios organizativos se comunican adecuadamente.</td>
+                        <td><input type="radio" name="org_3" value="1"></td><td><input type="radio" name="org_3" value="2"></td><td><input type="radio" name="org_3" value="3"></td><td><input type="radio" name="org_3" value="4"></td><td><input type="radio" name="org_3" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>La planificación del trabajo es adecuada.</td>
+                        <td><input type="radio" name="org_4" value="1"></td><td><input type="radio" name="org_4" value="2"></td><td><input type="radio" name="org_4" value="3"></td><td><input type="radio" name="org_4" value="4"></td><td><input type="radio" name="org_4" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Puedo participar en decisiones que afectan a mi trabajo.</td>
+                        <td><input type="radio" name="org_5" value="1"></td><td><input type="radio" name="org_5" value="2"></td><td><input type="radio" name="org_5" value="3"></td><td><input type="radio" name="org_5" value="4"></td><td><input type="radio" name="org_5" value="5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Estrés laboral</legend>
+            <table>
+                <thead>
+                    <tr><th>Pregunta</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Me siento estresado/a con frecuencia debido al trabajo.</td>
+                        <td><input type="radio" name="estres_1" value="1"></td><td><input type="radio" name="estres_1" value="2"></td><td><input type="radio" name="estres_1" value="3"></td><td><input type="radio" name="estres_1" value="4"></td><td><input type="radio" name="estres_1" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>El trabajo me genera tensión emocional.</td>
+                        <td><input type="radio" name="estres_2" value="1"></td><td><input type="radio" name="estres_2" value="2"></td><td><input type="radio" name="estres_2" value="3"></td><td><input type="radio" name="estres_2" value="4"></td><td><input type="radio" name="estres_2" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Me resulta difícil desconectar del trabajo fuera de la jornada.</td>
+                        <td><input type="radio" name="estres_3" value="1"></td><td><input type="radio" name="estres_3" value="2"></td><td><input type="radio" name="estres_3" value="3"></td><td><input type="radio" name="estres_3" value="4"></td><td><input type="radio" name="estres_3" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Al finalizar la jornada me siento agotado/a.</td>
+                        <td><input type="radio" name="estres_4" value="1"></td><td><input type="radio" name="estres_4" value="2"></td><td><input type="radio" name="estres_4" value="3"></td><td><input type="radio" name="estres_4" value="4"></td><td><input type="radio" name="estres_4" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Considero que mi nivel de estrés ha aumentado en los últimos 12 meses.</td>
+                        <td><input type="radio" name="estres_5" value="1"></td><td><input type="radio" name="estres_5" value="2"></td><td><input type="radio" name="estres_5" value="3"></td><td><input type="radio" name="estres_5" value="4"></td><td><input type="radio" name="estres_5" value="5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Apoyo y clima laboral</legend>
+            <table>
+                <thead>
+                    <tr><th>Pregunta</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Existe un buen ambiente de trabajo entre compañeros.</td>
+                        <td><input type="radio" name="clima_1" value="1"></td><td><input type="radio" name="clima_1" value="2"></td><td><input type="radio" name="clima_1" value="3"></td><td><input type="radio" name="clima_1" value="4"></td><td><input type="radio" name="clima_1" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Recibo apoyo cuando tengo dificultades laborales.</td>
+                        <td><input type="radio" name="clima_2" value="1"></td><td><input type="radio" name="clima_2" value="2"></td><td><input type="radio" name="clima_2" value="3"></td><td><input type="radio" name="clima_2" value="4"></td><td><input type="radio" name="clima_2" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Mi responsable escucha y atiende las necesidades del equipo.</td>
+                        <td><input type="radio" name="clima_3" value="1"></td><td><input type="radio" name="clima_3" value="2"></td><td><input type="radio" name="clima_3" value="3"></td><td><input type="radio" name="clima_3" value="4"></td><td><input type="radio" name="clima_3" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Los conflictos laborales se gestionan adecuadamente.</td>
+                        <td><input type="radio" name="clima_4" value="1"></td><td><input type="radio" name="clima_4" value="2"></td><td><input type="radio" name="clima_4" value="3"></td><td><input type="radio" name="clima_4" value="4"></td><td><input type="radio" name="clima_4" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Me siento tratado/a con respeto en mi trabajo.</td>
+                        <td><input type="radio" name="clima_5" value="1"></td><td><input type="radio" name="clima_5" value="2"></td><td><input type="radio" name="clima_5" value="3"></td><td><input type="radio" name="clima_5" value="4"></td><td><input type="radio" name="clima_5" value="5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Motivación y compromiso</legend>
+            <table>
+                <thead>
+                    <tr><th>Pregunta</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Me siento motivado/a para realizar mi trabajo.</td>
+                        <td><input type="radio" name="mot_1" value="1"></td><td><input type="radio" name="mot_1" value="2"></td><td><input type="radio" name="mot_1" value="3"></td><td><input type="radio" name="mot_1" value="4"></td><td><input type="radio" name="mot_1" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Mi trabajo es valorado y reconocido.</td>
+                        <td><input type="radio" name="mot_2" value="1"></td><td><input type="radio" name="mot_2" value="2"></td><td><input type="radio" name="mot_2" value="3"></td><td><input type="radio" name="mot_2" value="4"></td><td><input type="radio" name="mot_2" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Me siento comprometido/a con los objetivos de la empresa.</td>
+                        <td><input type="radio" name="mot_3" value="1"></td><td><input type="radio" name="mot_3" value="2"></td><td><input type="radio" name="mot_3" value="3"></td><td><input type="radio" name="mot_3" value="4"></td><td><input type="radio" name="mot_3" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Recomendaría esta empresa como lugar para trabajar.</td>
+                        <td><input type="radio" name="mot_4" value="1"></td><td><input type="radio" name="mot_4" value="2"></td><td><input type="radio" name="mot_4" value="3"></td><td><input type="radio" name="mot_4" value="4"></td><td><input type="radio" name="mot_4" value="5"></td>
+                    </tr>
+                    <tr>
+                        <td>Mi motivación ha disminuido durante el último año.</td>
+                        <td><input type="radio" name="mot_5" value="1"></td><td><input type="radio" name="mot_5" value="2"></td><td><input type="radio" name="mot_5" value="3"></td><td><input type="radio" name="mot_5" value="4"></td><td><input type="radio" name="mot_5" value="5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Identificación de causas</legend>
+            <div class="form-group">
+                <label><strong>¿Cuáles considera que son las principales causas del aumento del estrés laboral? (Marque hasta 3)</strong></label>
+                <div class="grid-options" id="grupo-estres">
+                    <label><input type="checkbox" name="causa_estres" value="Exceso de carga de trabajo"> Exceso de carga de trabajo</label>
+                    <label><input type="checkbox" name="causa_estres" value="Falta de personal"> Falta de personal</label>
+                    <label><input type="checkbox" name="causa_estres" value="Falta de planificación"> Falta de planificación</label>
+                    <label><input type="checkbox" name="causa_estres" value="Cambios organizativos frecuentes"> Cambios organizativos frecuentes</label>
+                    <label><input type="checkbox" name="causa_estres" value="Falta de comunicación"> Falta de comunicación</label>
+                    <label><input type="checkbox" name="causa_estres" value="Falta de reconocimiento"> Falta de reconocimiento</label>
+                    <label><input type="checkbox" name="causa_estres" value="Conflictos laborales"> Conflictos laborales</label>
+                    <label><input type="checkbox" name="causa_estres" value="Horarios o turnos"> Horarios o turnos</label>
+                    <label><input type="checkbox" name="causa_estres" value="Presión por objetivos"> Presión por objetivos</label>
+                    <label><input type="checkbox" name="causa_estres" value="Falta de formación"> Falta de formación</label>
+                    <label><input type="checkbox" name="causa_estres" value="Incertidumbre sobre el futuro"> Incertidumbre sobre el futuro</label>
+                    <label><input type="checkbox" name="causa_estres" value="Otras"> Otras: <input type="text" name="causa_estres_otra" style="width: 100px;"></label>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 25px;">
+                <label><strong>¿Cuáles considera que son las principales causas de la desmotivación? (Marque hasta 3)</strong></label>
+                <div class="grid-options" id="grupo-desmotivacion">
+                    <label><input type="checkbox" name="causa_desmot" value="Falta de reconocimiento"> Falta de reconocimiento</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Escasas oportunidades de desarrollo profesional"> Escasas oportunidades de desarrollo</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Salario y condiciones económicas"> Salario y condiciones económicas</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Sobrecarga de trabajo"> Sobrecarga de trabajo</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Falta de participación en decisiones"> Falta de participación en decisiones</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Problemas de liderazgo o gestión"> Problemas de liderazgo o gestión</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Falta de recursos para trabajar"> Falta de recursos para trabajar</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Falta de comunicación"> Falta de comunicación</label>
+                    <label><input type="checkbox" name="causa_desmot" value="Otras"> Otras: <input type="text" name="causa_desmot_otra" style="width: 100px;"></label>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Valoración global</legend>
+            <div class="form-group">
+                <label><strong>¿Cómo valora actualmente su bienestar laboral?</strong></label>
+                <div class="grid-options">
+                    <label><input type="radio" name="bienestar" value="Muy bueno"> Muy bueno</label>
+                    <label><input type="radio" name="bienestar" value="Bueno"> Bueno</label>
+                    <label><input type="radio" name="bienestar" value="Aceptable"> Aceptable</label>
+                    <label><input type="radio" name="bienestar" value="Malo"> Malo</label>
+                    <label><input type="radio" name="bienestar" value="Muy malo"> Muy malo</label>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label><strong>En una escala de 0 a 10, ¿cómo valora su nivel actual de motivación?</strong></label>
+                <div class="scale-10">
+                    <span>0</span>
+                    <input type="range" name="num_motivacion" min="0" max="10" step="1" value="5" oninput="this.nextElementSibling.value = this.value">
+                    <output>5</output>
+                    <span>10</span>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label><strong>En una escala de 0 a 10, ¿cómo valora su nivel actual de estrés?</strong></label>
+                <div class="scale-10">
+                    <span>0</span>
+                    <input type="range" name="num_estres" min="0" max="10" step="1" value="5" oninput="this.nextElementSibling.value = this.value">
+                    <output>5</output>
+                    <span>10</span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Preguntas abiertas</legend>
+            <div class="form-group">
+                <label><strong>¿Qué aspectos de su trabajo le generan más estrés?</strong></label>
+                <textarea name="abierta_1"></textarea>
+            </div>
+            <div class="form-group">
+                <label><strong>¿Qué medidas considera prioritarias para reducir el estrés laboral?</strong></label>
+                <textarea name="abierta_2"></textarea>
+            </div>
+            <div class="form-group">
+                <label><strong>¿Qué acciones podrían mejorar la motivación y el compromiso de la plantilla?</strong></label>
+                <textarea name="abierta_3"></textarea>
+            </div>
+            <div class="form-group">
+                <label><strong>Cualquier comentario adicional que desee trasladar al Comité de Empresa:</strong></label>
+                <textarea name="abierta_4"></textarea>
+            </div>
+        </fieldset>
+
+        <button type="submit" id="botonEnviar">Enviar Encuesta</button>
+
+		<div id="mensajeExito" style="display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; text-align: center; font-family: sans-serif; font-size: 1.1em; font-weight: bold;">
+			Tu formulario ha sido recibido. Gracias por participar. :)
+		</div>
+
+		<div id="mensajeError" style="display: none; margin-top: 20px; padding: 15px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; text-align: center; font-family: sans-serif; font-size: 1.1em; font-weight: bold;">
+			Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo o avisa al administrador. :(
+		</div>
+		
+		<!--<iframe name="iframe_oculto" id="iframe_oculto" style="display:none;" onload="if(typeof comprobarRespuestaIframe === 'function') comprobarRespuestaIframe();"></iframe>
+		-->
+		<iframe name="iframe_oculto" id="iframe_oculto" style="display:none;"></iframe>
+	<div id="resultadoServidor" style="display: none; margin-top: 20px; padding: 20px; border: 2px solid #28a745; background-color: #d4edda; color: #155724; border-radius: 8px;">
+    </div>
+	</form>
+</div>
+
+<script>
+let formularioEnviado = false; 
+    // Lógica para limitar a un máximo de 3 opciones en los checkboxes
+    function limitarCheckboxes(selector, limit) {
+        const contenedor = document.querySelector(selector);
+        const checkboxes = contenedor.querySelectorAll('input[type="checkbox"]');
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const seleccionados = contenedor.querySelectorAll('input[type="checkbox"]:checked');
+                if (seleccionados.length >= limit) {
+                    checkboxes.forEach(cb => {
+                        if (!cb.checked) cb.disabled = true;
+                    });
+                } else {
+                    checkboxes.forEach(cb => cb.disabled = false);
+                }
+            });
+        });
+    }
+
+    limitarCheckboxes('#grupo-estres', 3);
+    limitarCheckboxes('#grupo-desmotivacion', 3);
+
+    // Actualizar el contador al cargar la página
+    function actualizarContador() {
+    const datosExistentes = JSON.parse(localStorage.getItem('encuestas_respuestas')) || [];
+    const contadorEl = document.getElementById('contador');
+    // Solo intenta cambiar el texto si el elemento realmente existe en el HTML
+    if (contadorEl) {
+        contadorEl.innerText = datosExistentes.length;
+    }
+	}
+    window.onload = actualizarContador;
+
+    // Limpiar el historial local
+    function limpiarDatos() {
+        if (confirm('¿Está seguro de que desea borrar todo el historial local guardado en este dispositivo?')) {
+            localStorage.removeItem('encuestas_respuestas');
+            actualizarContador();
+            alert('Historial local borrado con éxito.');
+        }
+    }
+
+    // Exportar todas las respuestas guardadas en formato JSON
+    function descargarJSON() {
+        const datos = localStorage.getItem('encuestas_respuestas');
+        if (!datos || JSON.parse(datos).length === 0) {
+            alert('Aún no hay respuestas registradas para descargar.');
+            return;
+        }
+
+        const blob = new Blob([datos], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `respuestas_encuesta_${new Date().toISOString().slice(0,10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+// PROCESAR Y ENVIAR FORMULARIO (Versión corregida y blindada)
+function procesarYEnviarFormulario(event) {
+    // Detenemos el envío nativo inmediato para controlar nosotros el flujo
+    event.preventDefault(); 
+
+    const formElement = event.target;
+    const formDataRaw = new FormData(formElement);
+    const respuesta = {};
+
+    // Ocultamos mensajes anteriores (Corregido el .style.style)
+    const msgExito = document.getElementById('mensajeExito');
+    const msgError = document.getElementById('mensajeError');
+    if (msgExito) msgExito.style.display = 'none';
+    if (msgError) msgError.style.display = 'none';
+
+    // Convertimos las respuestas a JSON
+    formDataRaw.forEach((value, key) => {
+        if (key === 'causa_estres' || key === 'causa_desmot') {
+            if (!respuesta[key]) {
+                respuesta[key] = value;
+            } else {
+                respuesta[key] = respuesta[key] + "; " + value;
+            }
+        } else if (key !== 'datos_json') { 
+            respuesta[key] = value;
+        }
+    });
+
+    respuesta["fecha_registro"] = new Date().toISOString();
+
+    // Guardado en LocalStorage
+    localStorage.setItem('encuestas_respuestas', JSON.stringify(respuesta));
+
+    // Inyectamos el string en el input oculto
+    const inputDatos = document.getElementById('datos_json');
+    if (inputDatos) {
+        inputDatos.value = JSON.stringify(respuesta);
+    }
+    
+    // Cambiamos el estado del botón para dar feedback al usuario
+    const boton = document.getElementById('botonEnviar');
+    if (boton) {
+        boton.disabled = true;
+        boton.innerText = "Enviando...";
+    }
+
+    formularioEnviado = true; 
+
+    // SEGURO EXTRA: Forzamos de forma manual al formulario a que dispare 
+    // su envío apuntando al iframe oculto. Así el navegador no se puede escapar.
+    formElement.submit();
+}
+
+// ESTA FUNCIÓN SE ACTIVA CUANDO EL IFRAME RECIBE RESPUESTA
+function comprobarRespuestaIframe() {
+	console.log("probando 1");
+    // Si el iframe se carga solo al abrir la web de primeras, se ignora
+    if (!formularioEnviado) {
+	console.log("probando 2");
+		return;
+	}
+    const boton = document.getElementById('botonEnviar');
+    console.log("probando 3");
+    // Ocultamos el botón y mostramos el letrero de éxito en la pantalla principal
+    if (boton) boton.style.display = 'none';
+    document.getElementById('mensajeExito').style.display = 'block';
+    
+    // Reseteamos el formulario de forma segura
+    document.getElementById('encuestaForm').reset();
+    
+    // Actualizamos el contador local por si acaso
+    actualizarContador();
+    
+    // Reseteamos la bandera para futuros envíos
+    formularioEnviado = false;
+}
+
+// Ponemos a la página principal a escuchar mensajes del exterior
+window.addEventListener("message", function(event) {
+    
+    // RECOMENDACIÓN DE SEGURIDAD (Opcional pero ideal): 
+    // Comprobar que el mensaje viene realmente de Microsoft Power Platform
+    console.log("paco");
+	if (!event.origin.includes("powerplatform.com")) {
+        return; // Si viene de otro sitio, lo ignoramos
+    }
+
+    // Si el mensaje es el que configuramos en Automate:
+    if (event.data === "formulario_guardado_ok") {
+        
+        // 1. Buscamos los elementos (ahora sí podemos porque estamos en la página principal)
+        var displayBox = document.getElementById('mensajeExito');
+        var formElement = document.getElementById('encuestaForm');
+        var submitButton = document.getElementById('botonEnviar');
+
+        // 2. Pintamos la respuesta en la pantalla
+        if (displayBox) {
+            displayBox.innerHTML = `
+                <h3>¡Encuesta Guardada Correctamente!</h3>
+                <p>Tu flujo en Power Automate ha procesado la respuesta y el iframe nos ha avisado de forma segura.</p>
+            `;
+            displayBox.style.display = 'block';
+        }
+
+        // 3. Reseteamos el formulario y el botón
+        if (formElement) formElement.reset();
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerText = "Enviar Encuesta";
+        }
+    }
+}, false);
+
+</script>
+
+</body>
+</html>
